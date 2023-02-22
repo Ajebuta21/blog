@@ -22,23 +22,32 @@ const Signup = () => {
         passwordRef.current.value
       );
       if (user) {
-     await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "users"), {
           username: usernameRef.current.value,
           email: emailRef.current.value,
         });
-          toast.success("🦄 Signup sucessful!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
+        toast.success("Signup sucessful!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
     } catch (error) {
-      console.log("error=>", error);
+      toast.error("Error while creating the account", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
@@ -85,8 +94,8 @@ const Signup = () => {
             </Link>
           </p>
         </form>
-          </div>
-          <ToastContainer/>
+      </div>
+      <ToastContainer />
     </>
   );
 };
