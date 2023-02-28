@@ -5,13 +5,15 @@ import { auth, db } from "../firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
+import {useNavigate} from 'react-router-dom'
 
 import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+    const passwordRef = useRef(null);
+    const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,7 +30,7 @@ const Signup = () => {
         });
         toast.success("Signup sucessful!", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -36,8 +38,10 @@ const Signup = () => {
           progress: undefined,
           theme: "colored",
         });
+          setTimeout(()=> navigate('/'), 3000)
       }
     } catch (error) {
+        console.log(error)
       toast.error("Error while creating the account", {
         position: "top-right",
         autoClose: 5000,
